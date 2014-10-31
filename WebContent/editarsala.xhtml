@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+		
+<f:view encoding="ISO-8859-1"> 
+
+<h:head>
+	<title>Aula - Editar sala</title>
+</h:head>
+
+
+<h:body>
+	<ui:include src="top.xhtml"></ui:include>
+	<p:spacer height="20"/>
+	
+	<h:form>
+		 <p:growl id="growl" sticky="true" showDetail="true" />
+		<p:panel header="Cadastro de prédio" footer="Sistema Aula">
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Número: "/>
+			<p:inputMask value = "#{salaBean.salaVO.numero}" placeholder="Campo Obrigatório" required="true"
+			requiredMessage="Preencha o número da sala" size="5" mask="9?9"/>
+
+			<p:outputLabel value="Andar: "/>
+			<p:inputMask value="#{salaBean.salaVO.andar}"
+			required="true" requiredMessage="Preencha o andar da sala"
+			 size="5"  mask="9"/>
+			
+			<p:outputLabel value="Observações: " />
+			<p:editor value="#{salaBean.salaVO.observacao}" width="600"/>
+			
+			<p:outputLabel value="Prédio: "/>
+			<p:selectOneMenu>
+				<f:selectItems value="#{predioBean.predios}"/>
+			</p:selectOneMenu>
+		</h:panelGrid>
+		</p:panel>
+		<br />
+		<p:commandButton value="Editar" actionListener="#{salaBean.editar}"
+		update="growl" process="@this" ajax="false"/>
+	</h:form>
+</h:body>
+	
+
+</f:view>
+</html>

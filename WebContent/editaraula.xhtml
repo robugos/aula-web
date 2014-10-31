@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+		
+<f:view encoding="ISO-8859-1"> 
+
+<h:head>
+	<title>Aula - Editar aula</title>
+</h:head>
+
+
+<h:body>
+	<ui:include src="top.xhtml"></ui:include>
+	<p:spacer height="20"/>
+	
+	<h:form>
+		 <p:growl id="growl" sticky="true" showDetail="true" />
+		<p:panel header="Cadastro de aula" footer="Sistema Aula">
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Dia da aula: "/>
+			<p:inputMask value = "#{aulaBean.aulaVO.diaAula}" placeholder="Campo Obrigatório" required="true"
+			requiredMessage="Preencha o número da sala" size="5" mask="9?9"/>
+
+			<p:outputLabel value="Horário inicial:  "/>
+			<p:calendar id="time1"
+				value="#{aulaBean.aulaVO.horaInicial}"
+					pattern="HH:mm a" timeOnly="true"
+					required="true" requiredMessage="Prrencha o horário
+					inicial da aula"/>
+			
+			<p:outputLabel value="Horário final:  "/>
+			<p:calendar id="time1"
+				value="#{aulaBean.aulaVO.horaFinal}"
+					pattern="HH:mm a" timeOnly="true"
+					required="true" requiredMessage="Prrencha
+					o horário final da aula"/>
+			
+			
+			<p:outputLabel value="Data: " />
+			<p:calendar
+				value="#{aulaBean.aulaVO.data}"  mask = "true" pattern="dd-mm-yyyy"
+				converter="converteData" locale="pt" placeholder="Campo Obrigatório" 
+				navigator="true"
+				yearRange="c-80:c+20"/>
+			
+			<p:outputLabel value="Disciplina: "/>
+			<p:selectOneMenu>
+				<f:selectItems value="#{disciplina.listaDisciplinas}"/>
+			</p:selectOneMenu>
+		</h:panelGrid>
+		
+		<p:outputLabel value="Sala: "/>
+			<p:selectOneMenu>
+				<f:selectItems value="#{sala.listaSalas}"/>
+			</p:selectOneMenu>
+		</h:panelGrid>
+		</p:panel>
+		<br />
+		<p:commandButton value="Editar" actionListener="#{aulaBean.editar}"
+		update="growl" process="@this" ajax="false"/>
+	</h:form>
+</h:body>
+	
+
+</f:view>
+</html>

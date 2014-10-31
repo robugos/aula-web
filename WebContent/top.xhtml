@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	</h:head>
+
+		<p:notificationBar  position="bottom" effect="slide" styleClass="top" widgetVar="bar" autoDisplay="true" style="height : 25px">
+		<h:panelGrid  columns="7" style="font-size:18px;font-weight:bold; font-style: arial">
+				<h:outputText value="Navegadores recomendados:" style="font-size:18px;font-weight:bold; font-style: arial" /> 
+    			<a href="http://br.mozdev.org/firefox/download/" target="_blank"><img src="img/firefox.png" alt = "Mozilla Firefox" title="Mozilla Firefox" /></a>
+    			<a href="http://www.google.com/intl/pt-BR/chrome/browser/" target="_blank"><img src="img/chrome.png" alt="Google Chrome" title="Google Chrome"/></a>
+    			<a href="http://www.opera.com/download/" target="_blank"><img src="img/opera.png" alt="Opera" title="Opera"/></a>
+				</h:panelGrid>
+		</p:notificationBar>
+	
+		<h:form>
+			<p:menubar >
+			<p:menuitem value="Home"  icon="ui-icon-home" url="home.xhtml"/>				
+				<p:submenu label="Cursos"  icon="ui-icon-person">
+					<p:menuitem value="Inclusão" action ="novocurso.xhtml?faces-redirect=true"
+					actionListener="#{cursoBean.novoCurso}"/>
+					<p:menuitem value="Consulta" url="buscarcurso.xhtml?faces-redirect=true"/>
+				</p:submenu>
+				
+				<p:submenu label="Disciplinas"  icon="ui-icon-person">
+					<p:menuitem value="Inclusão" action ="novadisciplina.xhtml?faces-redirect=true"
+					actionListener="#{disciplinaBean.novaDisciplina}"/>
+					<p:menuitem value="Consulta" url="buscardisciplina.xhtml?faces-redirect=true"/>
+				</p:submenu>
+				
+				<p:submenu label="Aulas"  icon="ui-icon-person">
+					<p:menuitem value="Inclusão" action ="novaaula.xhtml?faces-redirect=true"
+					actionListener="#{aulaBean.novaAula}"/>
+					<p:menuitem value="Consulta" url="buscaraula.xhtml?faces-redirect=true"/>
+				</p:submenu>
+				
+				<p:submenu label="Salas"  icon="ui-icon-person">
+					<p:menuitem value="Inclusão" action ="novasala.xhtml?faces-redirect=true"
+					actionListener="#{cursoBean.novoCurso}"/>
+					<p:menuitem value="Consulta" url="buscarsala.xhtml?faces-redirect=true"/>
+				</p:submenu>
+				
+				<p:submenu label="Prédios"  icon="ui-icon-person">
+					<p:menuitem value="Inclusão" action ="novopredio.xhtml?faces-redirect=true"
+					actionListener="#{predioBean.novoPredio}"/>
+					<p:menuitem value="Consulta" action="buscarpredio.xhtml?faces-redirect=true"/>
+				</p:submenu>
+				
+ 		   <p:menuitem value = "Sair" icon= "ui-icon-extlink" >
+ 				</p:menuitem>	
+	</p:menubar>
+	</h:form>
+
+</html>

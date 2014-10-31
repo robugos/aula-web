@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<h:head>
+	
+		<title>Aula - Buscar curso </title>
+	
+	</h:head>
+</h:head>
+
+<h:body>
+	<ui:include src="top.xhtml"></ui:include>
+			<p:spacer height="20"></p:spacer>
+	<h:form>
+		<p:dataTable id="listaCursos" var="curso" value="#{cursoBean.cursos}"
+		emptyMessage="Não existe registro para esta busca" widgetVar="tabelaCliente" rows="10" paginator="true"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+		
+		<p:column headerText="Nome" style="text-align:center"
+		filterBy="#{curso.nome}" filterMatchMode="contains">
+			<p:outputLabel value="#{curso.nome}"/>
+		</p:column>
+		<p:column headerText="Departamento" style="text-align:center"
+		filterBy="#{curso.departamento}" filterMatchMode="contains">
+			<p:outputLabel value="#{curso.departamento}"/>
+		</p:column>
+		<p:column headerText="Nome do coordenador" style="text-align:center"
+		filterBy="#{curso.nomeCordenador}" filterMatchMode="contains">
+			<p:outputLabel value="#{curso.nomeCordenador}"/>
+		</p:column>
+		<p:column headerText="Editar" style="text-align:center">
+			<p:commandButton icon="ui-icon-person" action="editarcurso.xhtml?faces-redirect=true"
+			actionListener="#{cursoBean.selecionarCurso}"/>
+		</p:column>
+		<p:column headerText="Apagar" style="text-align:center">
+			<p:commandButton icon="ui-icon-alert"
+			 actionListener="#{cursoBean.apagar}">
+			<p:confirm header="Atenção!"
+				message="Deseja realmente apagar este curso" 
+				icon="ui-icon-alert"/>
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+			<center>
+				<p:commandButton value="Confirmar" type="button"
+					styleClass="ui-confirmdialog-yes" icon="iu-icon-check"></p:commandButton>
+				<p:commandButton value="Cancelar" type="button"
+					styleClass="ui-confirmdialog-no" icon="iu-icon-close"></p:commandButton>
+			</center>
+		</p:confirmDialog>
+		<br /> 
+		<p:commandButton value="Adicionar curso" action ="novocurso.xhtml?faces-redirect=true"
+					actionListener="#{cursoBean.novoCurso}" ajax="false"/>
+	</h:form>
+</h:body>
+</html>
