@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+		
+<f:view encoding="ISO-8859-1"> 
+
+<h:head>
+	<title>Aula - Novo Curso</title>
+</h:head>
+
+
+<h:body>
+	<ui:include src="top.xhtml"></ui:include>
+	<p:spacer height="20"/>
+	
+	<h:form>
+		 <p:growl id="growl" sticky="true" showDetail="true" />
+		<p:panel header="Cadastro de disciplina" footer="Sistema Aula">
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Nome:"/>
+			<p:inputText value = "#{disciplinaBean.disciplinaVO.nome}" placeholder="Campo Obrigatório" required="true"
+			requiredMessage="Preencha o nome da disciplina" size="70"/>
+
+			<p:outputLabel value="Professor:"/>
+			<p:inputText value="#{disciplinaBean.disciplinaVO.professor}" placeholder="Campo Obrigatório" required="true"
+			requiredMessage="Preencha o endereço do cliente" size="50" />
+			
+			<p:outputLabel value="Carga horária: "/>
+			<p:inputMask value="#{disciplinaBean.disciplinaVO.cargaHoraria}" 
+			required="true" mask="99h"
+			requiredMessage="Preencha o endereço do cliente" size="5" />
+			
+			
+				<h:outputLabel value="Tipo de disciplina:"/>
+					<p:selectOneMenu id="disciplina" value = "#{disciplinaBean.disciplinaVO.tipoDisciplina}">
+						<f:selectItem itemLabel="Obrigatória" itemValue="Obrigatória"/>
+						<f:selectItem itemLabel="Optativa" itemValue="Optativa"/>
+					</p:selectOneMenu>
+					
+				<h:outputLabel value="Curso:"/>
+					<p:selectOneMenu id="listaCurso" value = "#{disciplinaBean.cursoId}">
+						<f:selectItems value="#{cursoBean.listaCursos}"/>
+					</p:selectOneMenu>
+		
+		</h:panelGrid>
+		</p:panel>
+		<br />
+		<p:commandButton value="Salvar" actionListener="#{disciplinaBean.salvar}"
+		update="growl" process="@this" ajax="false"/>
+	</h:form>
+</h:body>
+	
+
+</f:view>
+</html>

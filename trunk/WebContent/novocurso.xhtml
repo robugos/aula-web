@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+		
+<f:view encoding="ISO-8859-1"> 
+
+<h:head>
+	<title>Aula - Novo Curso</title>
+</h:head>
+
+
+<h:body>
+	<ui:include src="top.xhtml"></ui:include>
+	<p:spacer height="20"/>
+	
+	<h:form>
+		 <p:growl id="growl" sticky="true" showDetail="true" />
+		<p:panel header="Cadastro de curso" footer="Sistema Aula">
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Nome:"/>
+			<p:inputText value = "#{cursoBean.cursoVO.nome}" placeholder="Campo Obrigatório" required="true"
+			requiredMessage="Preencha o nome do cliente" size="70"/>
+
+			<p:outputLabel value="Departamento"/>
+			<p:inputText value="#{cursoBean.cursoVO.departamento}" placeholder="Campo Obrigatório" required="true"
+			requiredMessage="Preencha o endereço do cliente" size="30" />
+			
+			<p:outputLabel value="Nome do coordenador"/>
+			<p:inputText value="#{cursoBean.cursoVO.nomeCordenador}" placeholder="Campo Obrigatório" required="true"
+			requiredMessage="Preencha o endereço do cliente" size="50" />
+			
+			<p:outputLabel value="Quantidade de períodos:"/>
+			<p:inputMask mask="9?9" value="#{cursoBean.cursoVO.quantPeriodos}" size="5"/>
+			
+			
+			<h:outputLabel value="Turno:"/>
+					<p:selectOneMenu id="turnoCurso" value = "#{cursoBean.cursoVO.turno}">
+						<f:selectItem itemLabel="Manhã" itemValue="Manhã"/>
+						<f:selectItem itemLabel="Tarde" itemValue="Tarde"/>
+						<f:selectItem itemLabel="Noite" itemValue="Noite"/>
+						<f:selectItem itemLabel="Manhã e tarde" itemValue="Manhã e tarde"/>
+						<f:selectItem itemLabel="Tarde e noite" itemValue="Tarde e noite"/>
+						<f:selectItem itemLabel="Manhã e noite" itemValue="Manhã e noite"/>
+					</p:selectOneMenu>
+		
+		</h:panelGrid>
+		</p:panel>
+		<br />
+		<p:commandButton value="Salvar" actionListener="#{cursoBean.salvar}"
+		update="growl" process="@this" ajax="false"/>
+	</h:form>
+</h:body>
+	
+
+</f:view>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<h:head>
+	
+		<title>Aula - Buscar sala </title>
+	
+	</h:head>
+</h:head>
+
+<h:body>
+	<ui:include src="top.xhtml"></ui:include>
+			<p:spacer height="20"></p:spacer>
+	<h:form>
+		<p:dataTable id="listaSalas" var="sala" value="#{salaBean.salas}"
+		emptyMessage="Não existe registro para esta busca" widgetVar="tabelaCliente" rows="10" paginator="true"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+		
+		<p:column headerText="Nome" style="text-align:center"
+		filterBy="#{sala.nome}" filterMatchMode="contains">
+			<p:outputLabel value="#{sala.nome}"/>
+		</p:column>
+		
+		
+		<p:column headerText="Predio" style="text-align:center"
+		filterBy="#{sala.fkPredio.nome}" filterMatchMode="contains">
+			<p:outputLabel value="#{sala.fkPredio.nome}"/>
+		</p:column>
+		
+		<p:column headerText="Editar" style="text-align:center">
+			<p:commandButton icon="ui-icon-person" action="editarsala.xhtml?faces-redirect=true"
+			actionListener="#{predioBean.selecionarPredio}"/>
+		</p:column>
+		<p:column headerText="Apagar" style="text-align:center">
+			<p:commandButton icon="ui-icon-alert"
+			 actionListener="#{predioBean.apagar}">
+			<p:confirm header="Atenção!"
+				message="Deseja realmente apagar esta sala?" 
+				icon="ui-icon-alert"/>
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+			<center>
+				<p:commandButton value="Confirmar" type="button"
+					styleClass="ui-confirmdialog-yes" icon="iu-icon-check"></p:commandButton>
+				<p:commandButton value="Cancelar" type="button"
+					styleClass="ui-confirmdialog-no" icon="iu-icon-close"></p:commandButton>
+			</center>
+		</p:confirmDialog>
+		<br /> 
+		<p:commandButton value="Adicionar sala" action ="novasala.xhtml?faces-redirect=true"
+					actionListener="#{salaBean.novaSala}" ajax="false"/>
+	</h:form>
+</h:body>
+</html>
