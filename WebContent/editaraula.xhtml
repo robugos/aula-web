@@ -24,22 +24,28 @@
 		<p:panel header="Cadastro de aula" footer="Sistema Aula">
 		<h:panelGrid columns="2">
 			<p:outputLabel value="Dia da aula: "/>
-			<p:inputMask value = "#{aulaBean.aulaVO.diaAula}" placeholder="Campo Obrigatório" required="true"
-			requiredMessage="Preencha o número da sala" size="5" mask="9?9"/>
+			<p:selectOneMenu value="#{aulaBean.aulaVO.diaAula}">
+				<f:selectItem itemLabel="Segunda-feira" itemValue="Segunda-feira"/>
+				<f:selectItem itemLabel="Terça-feira" itemValue="Terça-feira"/>
+				<f:selectItem itemLabel="Quarta-feira" itemValue="Quarta-feira"/>
+				<f:selectItem itemLabel="Quinta-feira" itemValue="Quinta-feira"/>
+				<f:selectItem itemLabel="Sexta-feira" itemValue="Sexta-feira"/>
+			
+			</p:selectOneMenu>
 
 			<p:outputLabel value="Horário inicial:  "/>
 			<p:calendar id="time1"
 				value="#{aulaBean.aulaVO.horaInicial}"
 					pattern="HH:mm a" timeOnly="true"
 					required="true" requiredMessage="Prrencha o horário
-					inicial da aula"/>
+					inicial da aula" placeholder="Campo obrigatório"/>
 			
 			<p:outputLabel value="Horário final:  "/>
-			<p:calendar id="time1"
+			<p:calendar id="time2"
 				value="#{aulaBean.aulaVO.horaFinal}"
 					pattern="HH:mm a" timeOnly="true"
 					required="true" requiredMessage="Prrencha
-					o horário final da aula"/>
+					o horário final da aula" placeholder="Campo obrigatório"/>
 			
 			
 			<p:outputLabel value="Data: " />
@@ -50,14 +56,14 @@
 				yearRange="c-80:c+20"/>
 			
 			<p:outputLabel value="Disciplina: "/>
-			<p:selectOneMenu>
-				<f:selectItems value="#{disciplina.listaDisciplinas}"/>
+			<p:selectOneMenu value="#{aulaBean.disciplinaId}">
+				<f:selectItems value="#{disciplinaBean.listaDisciplinas}"/>
 			</p:selectOneMenu>
-		</h:panelGrid>
+		
 		
 		<p:outputLabel value="Sala: "/>
-			<p:selectOneMenu>
-				<f:selectItems value="#{sala.listaSalas}"/>
+			<p:selectOneMenu value="#{aulaBean.salaId}">
+				<f:selectItems value="#{salaBean.listaSalas}"/>
 			</p:selectOneMenu>
 		</h:panelGrid>
 		</p:panel>

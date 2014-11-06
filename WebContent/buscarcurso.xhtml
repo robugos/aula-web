@@ -43,10 +43,10 @@
 			actionListener="#{cursoBean.selecionarCurso}"/>
 		</p:column>
 		<p:column headerText="Apagar" style="text-align:center">
-			<p:commandButton icon="ui-icon-alert"
-			 actionListener="#{cursoBean.apagar}">
+			<p:commandButton icon="ui-icon-alert"  actionListener="#{cursoBean.apagar}"
+			update="listaCursos" ajax="false">
 			<p:confirm header="Atenção!"
-				message="Deseja realmente apagar este curso" 
+				message="Deseja realmente apagar este curso?" 
 				icon="ui-icon-alert"/>
 				</p:commandButton>
 			</p:column>
