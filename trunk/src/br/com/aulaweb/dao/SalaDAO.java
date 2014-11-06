@@ -6,6 +6,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.aulaweb.vo.CursoVO;
+import br.com.aulaweb.vo.DisciplinaVO;
+import br.com.aulaweb.vo.PredioVO;
 import br.com.aulaweb.vo.SalaVO;
 
 public class SalaDAO extends Dao{
@@ -74,6 +77,24 @@ public class SalaDAO extends Dao{
 		List <SalaVO> lista = new ArrayList<SalaVO>();
 		try {
 			Query q = em.createQuery("select object (s) from SalaVO as s");
+			lista = q.getResultList();
+		}catch (Exception ex) {
+			em.close();
+		}
+		
+		return lista;
+		
+	}
+	
+	public List <SalaVO> selecionarTudo (PredioVO predioVO) {
+		EntityManager em = getEntityManager();
+
+		List <SalaVO> lista = new ArrayList <SalaVO>();
+		
+		try {
+			Query q = em.createQuery("select object (s) from SalaVO as s where "
+				+ "s.fkPredio =:idPredio");
+			q.setParameter("idPredio", predioVO);
 			lista = q.getResultList();
 		}catch (Exception ex) {
 			em.close();
