@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.aulaweb.vo.CursoVO;
 import br.com.aulaweb.vo.DisciplinaVO;
 
 public class DisciplinaDAO extends Dao{
@@ -81,4 +82,24 @@ public class DisciplinaDAO extends Dao{
 		return lista;
 		
 	}
+	
+	public List <DisciplinaVO> selecionarTudo (CursoVO cursoVO) {
+		EntityManager em = getEntityManager();
+
+		List <DisciplinaVO> lista = new ArrayList <DisciplinaVO>();
+		
+		try {
+			Query q = em.createQuery("select object (d) from DisciplinaVO as d where "
+				+ "d.fkCurso =:idCurso");
+			q.setParameter("idCurso", cursoVO);
+			lista = q.getResultList();
+		}catch (Exception ex) {
+			em.close();
+		}
+		
+		return lista;
+		
+	}
+	
+
 }

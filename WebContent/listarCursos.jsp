@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import = "java.sql.*"%>
-;<% 
+<% 
 	String driver = "com.mysql.jdbc.Driver";
 	String url = "jdbc:mysql://localhost/aulaweb";
 	String usuario = "root";
