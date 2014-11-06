@@ -24,7 +24,7 @@
 		<p:panel header="Cadastro de prédio" footer="Sistema Aula">
 		<h:panelGrid columns="2">
 			<p:outputLabel value="Número: "/>
-			<p:inputMask value = "#{salaBean.salaVO.numero}" placeholder="Campo Obrigatório" required="true"
+			<p:inputMask value = "#{salaBean.salaVO.numero}" required="true"
 			requiredMessage="Preencha o número da sala" size="5" mask="9?9"/>
 
 			<p:outputLabel value="Andar: "/>
@@ -36,8 +36,8 @@
 			<p:editor value="#{salaBean.salaVO.observacao}" width="600"/>
 			
 			<p:outputLabel value="Prédio: "/>
-			<p:selectOneMenu>
-				<f:selectItems value="#{predioBean.predios}"/>
+			<p:selectOneMenu value="#{salaBean.idPredio}">
+				<f:selectItems value="#{predioBean.listaPredios}"/>
 			</p:selectOneMenu>
 		</h:panelGrid>
 		</p:panel>

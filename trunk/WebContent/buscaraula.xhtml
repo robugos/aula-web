@@ -42,7 +42,7 @@
 		
 		<p:column headerText="Editar" style="text-align:center">
 			<p:commandButton icon="ui-icon-person" action="editaraula.xhtml?faces-redirect=true"
-			actionListener="#{cursoBean.selecionarCurso}"/>
+			actionListener="#{aulaBean.selecionarAula}"/>
 		</p:column>
 		<p:column headerText="Apagar" style="text-align:center">
 			<p:commandButton icon="ui-icon-alert"
@@ -61,7 +61,9 @@
 					styleClass="ui-confirmdialog-no" icon="iu-icon-close"></p:commandButton>
 			</center>
 		</p:confirmDialog>
-		
+		<br />
+		<p:commandButton value="Adicionar aula" action ="novaaula.xhtml?faces-redirect=true"
+					actionListener="#{aulaBean.novaAula}" ajax="false"/>
 	</h:form>
 </h:body>
 </html>

@@ -26,9 +26,9 @@
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="5,10,15">
 		
-		<p:column headerText="Nome" style="text-align:center"
-		filterBy="#{sala.nome}" filterMatchMode="contains">
-			<p:outputLabel value="#{sala.nome}"/>
+		<p:column headerText="Número" style="text-align:center"
+		filterBy="#{sala.numero}" filterMatchMode="contains">
+			<p:outputLabel value="#{sala.numero}"/>
 		</p:column>
 		
 		
@@ -39,7 +39,7 @@
 		
 		<p:column headerText="Editar" style="text-align:center">
 			<p:commandButton icon="ui-icon-person" action="editarsala.xhtml?faces-redirect=true"
-			actionListener="#{predioBean.selecionarPredio}"/>
+			actionListener="#{salaBean.selecionarSala}"/>
 		</p:column>
 		<p:column headerText="Apagar" style="text-align:center">
 			<p:commandButton icon="ui-icon-alert"

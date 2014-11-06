@@ -60,6 +60,7 @@ public class CursoDAO extends Dao{
 			
 			CursoVO curso = em.find(CursoVO.class, cursoVO.getIdCurso());
 			em.remove(curso);
+			em.getTransaction().commit();
 
 			
 		}catch (Exception ex) {

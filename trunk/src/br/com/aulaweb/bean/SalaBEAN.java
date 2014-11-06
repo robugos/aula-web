@@ -90,6 +90,12 @@ public class SalaBEAN {
 	 * @return the salas
 	 */
 	public DataModel<SalaVO> getSalas() {
+		List <SalaVO> lista = salaDAO.selecionarTudo();
+		try {
+			salas = new ListDataModel<SalaVO>(lista);
+		}catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}
 		return salas;
 	}
 
